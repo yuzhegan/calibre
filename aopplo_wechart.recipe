@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from calibre.web.feeds.recipes import BasicNewsRecipe # 引入 Recipe 基础类
+import csv
+class LaoWeiBlog(BasicNewsRecipe): # 继承 BasicNewsRecipe 类的新类名
+
+	#///////////////////
+	# 设置电子书元数据
+	#///////////////////
+	title = '从宇宙大爆炸到PPC' # 电子书名
+	description = u'Aopplo PPC' # 电子书简介
+	#cover_url = '' # 电子书封面
+	#masthead_url = '' # 页头图片
+	__author__ = 'Yuzhe' # 作者
+	language = 'zh' # 语言
+	encoding = 'utf-8' # 编码
+
+	#///////////////////
+	# 抓取页面内容设置
+	#///////////////////
+	#keep_only_tags = [{ 'class': 'example' }] # 仅保留指定选择器包含的内容
+	no_stylesheets = True # 去除 CSS 样式
+	remove_javascript = True # 去除 JavaScript 脚本
+	auto_cleanup = True # 自动清理 HTML 代码
+	delay = 5 # 抓取页面间隔秒数
+	max_articles_per_feed = 999 # 抓取文章数量
+	def ReadCsv(self, csvpath):
+			with open(csvpath, 'r') as f:
+					datas = csv.reader(f)
+					list = []
+					for data in datas:
+							data = data[0]
+							data = eval(data)  #dict format
+							list.append(data)
+			return list
+
+	#///////////////////
+	# 页面内容解析方法
+	#///////////////////
+	def parse_index(self):
+		articles = self.ReadCsv("/home/dav/Github/calibre/aopplo.csv") # 组成最终的数据结构
+		ans = [(self.title, articles)] # 组成最终的数据结构
+		return ans # 返回可供 Calibre 转换的数据结构

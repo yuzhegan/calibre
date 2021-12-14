@@ -42,7 +42,7 @@ class LaoWeiBlog(BasicNewsRecipe): # 继承 BasicNewsRecipe 类的新类名
 		 links.append(link)
 		for i in range(2,15):
 		 sites = site + str(i) + ".html"
-		 print(sites)
+		 #print(sites)
 		 soup = self.index_to_soup(sites)
 		 corrlis = soup.find("div",{"class":"list_item"})
 		 lis = corrlis.findAll("li") # 获取所有文章链接
@@ -50,15 +50,17 @@ class LaoWeiBlog(BasicNewsRecipe): # 继承 BasicNewsRecipe 类的新类名
 		 for li in lis:
 		  link = li.find("h2")
 		  links.append(link)
-		print(len(links))
+		#print(len(links))
 		articles = [] # 定义空文章资源数组
 		for link in links: # 循环处理所有文章链接
 			#print(link)
 			#title = link.a.contents[0].strip() # 提取文章标题
 			title = link.a.get("title").strip() # 提取文章标题
 			url =  link.a.get("href") # 提取文章链接
-			print(url)
+			#print(url)
 			a = {'title': title , 'url':url} # 组合标题和链接
+			print(a)
 			articles.append(a) # 累加到数组中
+			#print(articles)
 		ans = [(self.title, articles)] # 组成最终的数据结构
 		return ans # 返回可供 Calibre 转换的数据结构
