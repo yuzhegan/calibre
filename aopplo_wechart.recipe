@@ -39,6 +39,6 @@ class LaoWeiBlog(BasicNewsRecipe): # 继承 BasicNewsRecipe 类的新类名
 	# 页面内容解析方法
 	#///////////////////
 	def parse_index(self):
-		articles = self.ReadCsv("/home/dav/Github/calibre/aopplo.csv") # 组成最终的数据结构
+		articles = self.ReadCsv("/home/david/Github/calibre/aopplo.csv") # 组成最终的数据结构
 		ans = [(self.title, articles)] # 组成最终的数据结构
 		return ans # 返回可供 Calibre 转换的数据结构

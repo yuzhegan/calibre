@@ -11,6 +11,7 @@ def ReadCsv(csvpath):
         list = []
         for data in datas:
             data = data[0]
+            data = eval(data) #to dict
             # print(data)
             list.append(data)
     return list

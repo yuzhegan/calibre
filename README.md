@@ -4,7 +4,7 @@ change web content to ebooks
 ```
 wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sh /dev/stdin install_dir=~/calibre-bin isolated=y
 ```
-### just creat a soft link to `/usr/bin` 
+### just create a soft link to `/usr/bin` 
 ```
 sudo -s /home/david/calibre-bin/calibre/calibre /usr/bin/
 ```
